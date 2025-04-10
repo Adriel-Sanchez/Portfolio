@@ -115,6 +115,33 @@
       font-size: 1.5rem;
       margin-left: 5px;
     }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .social-icons a {
+      display: block;
+      width: 30px;
+      height: 30px;
+    }
+
+    .social-icons img {
+      object-fit: contain;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    .social-icons img {
+      width: 30px;
+      height: 30px;
+    }
+
+    .social-icons img:hover {
+      transform: scale(1.1);
+    }
   </style>
 </head>
 <body>
@@ -137,14 +164,14 @@
   </main>
 
   <footer>
-    <p>Adriel Sanchez  
+    <div class="social-icons">
       <a href="https://www.linkedin.com/in/adrielsanchez" target="_blank">
-        <i class="fab fa-linkedin"></i> LinkedIn
+        <img src="https://adriel-sanchez.github.io/Portfolio/Images/Linkedin.png" alt="LinkedIn Icon"/>
       </a>
       <a href="https://www.credly.com/users/adriel-sanchez.6d9c4577" target="_blank">
-        <i class="fas fa-certificate"></i> Credly
+        <img src="https://adriel-sanchez.github.io/Portfolio/Images/Credly.png" alt="Credly Icon"/>
       </a>
-    </p>
+    </div>
   </footer>
 
 </body>
