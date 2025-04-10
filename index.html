@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Cyber Security Portfolio</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: white;
+        }
+
+        h1, h2 {
+            color: #00bfff; /* Sky Blue */
+        }
+
+        a {
+            color: #00bfff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .header, .footer {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .projects {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .project-card {
+            background-color: #1f1f1f;
+            border-radius: 10px;
+            padding: 20px;
+            width: 45%;
+            margin: 10px;
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: scale(1.05);
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .project-description {
+            font-size: 1rem;
+            color: #bbb;
+        }
+
+        .project-links {
+            margin-top: 15px;
+        }
+
+        .project-links a {
+            margin: 0 10px;
+            padding: 8px 15px;
+            border: 2px solid #00bfff;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            color: #00bfff;
+        }
+
+        .project-links a:hover {
+            background-color: #00bfff;
+            color: #121212;
+        }
+
+        .footer {
+            background-color: #1f1f1f;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 20px;
+            color: #bbb;
+        }
+
+        .footer a {
+            color: #00bfff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <div class="header">
+        <h1>Welcome to My Cyber Security Portfolio</h1>
+        <p>Explore my projects and contributions in the world of Cyber Security</p>
+    </div>
+
+    <!-- Projects Section -->
+    <div class="container">
+        <div class="projects">
+            <div class="project-card">
+                <h2 class="project-title">Project 1: Secure Web App</h2>
+                <p class="project-description">Developed a secure web application with user authentication, data encryption, and protection against common vulnerabilities like XSS and SQL injection.</p>
+                <div class="project-links">
+                    <a href="#" target="_blank">View Project</a>
+                    <a href="#" target="_blank">GitHub Repo</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h2 class="project-title">Project 2: Network Monitoring Tool</h2>
+                <p class="project-description">Built a network monitoring tool to detect intrusions and unusual traffic patterns using machine learning algorithms.</p>
+                <div class="project-links">
+                    <a href="#" target="_blank">View Project</a>
+                    <a href="#" target="_blank">GitHub Repo</a>
+                </div>
+            </div>
+
+            <!-- Add more project cards as needed -->
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        <p>© 2025 Your Name | <a href="mailto:yourname@example.com">Contact</a></p>
+    </div>
+
+</body>
+</html>
