@@ -107,12 +107,23 @@
       height: 40px;
     }
 
+    /* Adjusting size for LinkedIn and Credly icons */
     .social-icons img {
-      width: 40px;
-      height: 40px;
       object-fit: contain;
       border-radius: 5px;
       transition: 0.3s;
+    }
+
+    /* Smaller size for LinkedIn icon */
+    .social-icons .linkedin {
+      width: 35px;
+      height: 35px;
+    }
+
+    /* Credly icon size remains the same */
+    .social-icons .credly {
+      width: 40px;
+      height: 40px;
     }
 
     .social-icons img:hover {
@@ -144,10 +155,10 @@
 
   <footer>
     <div class="social-icons">
-      <a href="https://www.linkedin.com/in/adrielsanchez" target="_blank">
+      <a href="https://www.linkedin.com/in/adrielsanchez" target="_blank" class="linkedin">
         <img src="https://adriel-sanchez.github.io/Portfolio/Images/Linkedin.png" alt="LinkedIn Icon"/>
       </a>
-      <a href="https://www.credly.com/users/adriel-sanchez.6d9c4577" target="_blank">
+      <a href="https://www.credly.com/users/adriel-sanchez.6d9c4577" target="_blank" class="credly">
         <img src="https://adriel-sanchez.github.io/Portfolio/Images/Credly.png" alt="Credly Icon"/>
       </a>
     </div>
