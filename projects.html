@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Projects - Adriel's Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>   
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
@@ -15,17 +16,62 @@
 
     header {
       text-align: center;
-      padding: 60px 20px 30px;
-      background-color: #1a1a1a;
+      padding: 60px 20px 40px;
+      background-color: #101820;
     }
 
     header h1 {
-      font-size: 2.5rem;
+      font-size: 3rem;
       color: #00bfff;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      color: #bbb;
     }
 
     main {
-      padding: 40px 20px;
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .project {
+      background-color: #1f1f1f;
+      margin-bottom: 30px;
+      border-radius: 10px;
+      padding: 30px;
+      transition: 0.3s;
+    }
+
+    .project:hover {
+      box-shadow: 0 0 10px #00bfff44;
+    }
+
+    .project h2 {
+      color: #00bfff;
+      margin-bottom: 15px;
+    }
+
+    .project p {
+      color: #ccc;
+    }
+
+    .project a {
+      display: inline-block;
+      margin-top: 15px;
+      color: #00bfff;
+      text-decoration: none;
+      border: 2px solid #00bfff;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
+
+    .project a:hover {
+      background-color: #00bfff;
+      color: #121212;
     }
 
     .back-button {
@@ -48,47 +94,25 @@
       color: #121212;
     }
 
-    .project {
-      background-color: #1f1f1f;
-      margin-bottom: 30px;
-      border-radius: 8px;
-      padding: 20px;
-    }
-
-    .project h2 {
-      color: #00bfff;
-      margin-bottom: 10px;
-    }
-
-    .project p {
-      color: #ccc;
-    }
-
-    .project a {
-      display: inline-block;
-      margin-top: 10px;
-      color: #00bfff;
-      text-decoration: none;
-      border: 2px solid #00bfff;
-      padding: 6px 12px;
-      border-radius: 6px;
-      transition: 0.3s;
-    }
-
-    .project a:hover {
-      background-color: #00bfff;
-      color: #121212;
-    }
-
     footer {
-      background-color: #1f1f1f;
-      padding: 20px;
+      background-color: #101820;
+      padding: 30px 20px;
       text-align: center;
-      color: #bbb;
+      color: #999;
     }
 
     footer a {
       color: #00bfff;
+      text-decoration: none;
+      margin-left: 8px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .fa-linkedin {
+      margin-left: 5px;
     }
   </style>
 </head>
@@ -96,6 +120,7 @@
 
   <header>
     <h1>My Projects</h1>
+    <p>Explore my hands-on technical projects, from simulations to automation tools.</p>
   </header>
 
   <main>
@@ -105,8 +130,8 @@
 
     <!-- Example Project -->
     <div class="project">
-      <h2>Project name</h2>
-      <p>description.</p>
+      <h2>Packet Tracer Network</h2>
+      <p>Simulated a corporate network using Cisco Packet Tracer to demonstrate secure routing, VLANs, and firewall rules.</p>
       <a href="#">View Project</a>
     </div>
 
@@ -114,7 +139,11 @@
   </main>
 
   <footer>
-    <p>Adriel Sanchez | <a href="https://www.linkedin.com/in/adrielsanchez" target="_blank">LinkedIn</a></p>
+    <p>© 2025 Adriel Sanchez | 
+      <a href="https://www.linkedin.com/in/adrielsanchez" target="_blank">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </p>
   </footer>
 
 </body>
