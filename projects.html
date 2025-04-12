@@ -46,6 +46,8 @@
       display: flex;
       gap: 20px;
       align-items: center;
+      justify-content: center;
+      text-align: center;
     }
 
     .project:hover {
@@ -80,10 +82,19 @@
     }
 
     .project img {
-      width: 150px;
+      width: 250px; /* Increased width */
       height: auto;
       border-radius: 8px;
-      object-fit: cover;
+      object-fit: contain;
+    }
+
+    .warning {
+      background-color: #ff4d4d;
+      color: #fff;
+      padding: 15px;
+      margin-bottom: 30px;
+      font-weight: bold;
+      text-align: center;
     }
 
     .back-button {
@@ -169,11 +180,15 @@
     </div>
 
     <!-- PortScanner-AS Project Card -->
+    <div class="warning">
+      <p><strong>Warning:</strong> Some antivirus software may block certain files. Please create an exception rule to run specific applications.</p>
+    </div>
+
     <div class="project">
       <img src="https://adriel-sanchez.github.io/Portfolio/Images/PS.png" alt="PortScanner-AS Image"/>
       <div>
         <h2>PortScanner</h2>
-        <p>tool that scans ports on a target, identifies open services, and retrieves banners.</p>
+        <p>Tool that scans ports on a target, identifies open services, and retrieves banners.</p>
         
         <!-- Download options with clear distinction -->
         <div style="display: flex; gap: 15px;">
