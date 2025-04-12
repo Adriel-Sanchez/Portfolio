@@ -43,6 +43,9 @@
       border-radius: 10px;
       padding: 30px;
       transition: 0.3s;
+      display: flex;
+      gap: 20px;
+      align-items: center;
     }
 
     .project:hover {
@@ -52,10 +55,12 @@
     .project h2 {
       color: #00bfff;
       margin-bottom: 15px;
+      width: 100%;
     }
 
     .project p {
       color: #ccc;
+      width: 100%;
     }
 
     .project a {
@@ -72,6 +77,13 @@
     .project a:hover {
       background-color: #00bfff;
       color: #121212;
+    }
+
+    .project img {
+      width: 150px;
+      height: auto;
+      border-radius: 8px;
+      object-fit: cover;
     }
 
     .back-button {
@@ -156,10 +168,20 @@
       <a href="https://adriel-sanchez.github.io/Portfolio/">Back to Portfolio</a>
     </div>
 
+    <!-- PortScanner-AS Project Card -->
     <div class="project">
-      <h2>Project name</h2>
-      <p>Description.</p>
-      <a href="#">View Project</a>
+      <img src="https://adriel-sanchez.github.io/Portfolio/Images/PS.png" alt="PortScanner-AS Image"/>
+      <div>
+        <h2>PortScanner-AS</h2>
+        <p>A simple port scanner tool that can scan a given range of IPs and ports for available services.</p>
+        
+        <!-- Download options with clear distinction -->
+        <p>Choose which version to download:</p>
+        <div style="display: flex; gap: 15px;">
+          <a href="https://adriel-sanchez.github.io/Portfolio/Files/PortScanner-AS.exe" download="PortScanner-AS.exe">Download Application</a>
+          <a href="https://adriel-sanchez.github.io/Portfolio/Files/PortScanner-AS-SourceFile.exe" download="PortScanner-AS-SourceFile.exe">Download Source File</a>
+        </div>
+      </div>
     </div>
   </main>
 
