@@ -89,12 +89,9 @@
     }
 
     .warning {
-      background-color: #ff4d4d;
-      color: #fff;
-      padding: 15px;
-      margin-bottom: 30px;
-      font-weight: bold;
-      text-align: center;
+      color: #ff4d4d;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
     }
 
     .back-button {
@@ -180,18 +177,19 @@
     </div>
 
     <!-- PortScanner-AS Project Card -->
-    <div class="warning">
-      <p><strong>Warning:</strong> Some antivirus software may block certain files. Please create an exception rule to run specific applications.</p>
-    </div>
-
     <div class="project">
+      <!-- Warning message -->
+      <div class="warning">
+        <p><strong>Note:</strong> Your antivirus might block certain files. Please create an exception to run them properly.</p>
+      </div>
+      
       <img src="https://adriel-sanchez.github.io/Portfolio/Images/PS.png" alt="PortScanner-AS Image"/>
       <div>
         <h2>PortScanner</h2>
         <p>Tool that scans ports on a target, identifies open services, and retrieves banners.</p>
-        
-        <!-- Download options with clear distinction -->
-        <div style="display: flex; gap: 15px;">
+
+        <!-- Centered download buttons -->
+        <div style="display: flex; justify-content: center; gap: 15px;">
           <a href="https://adriel-sanchez.github.io/Portfolio/Files/PortScanner-AS.exe" download="PortScanner-AS.exe">Download Application</a>
           <a href="https://adriel-sanchez.github.io/Portfolio/Files/PortScanner-AS-SourceFile.py" download="PortScanner-AS-SourceFile.py">Download Source File</a>
         </div>
