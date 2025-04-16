@@ -138,12 +138,9 @@
 
     .social-icons a {
       display: block;
-      width: 30px;
-      height: 30px;
     }
 
     .social-icons img {
-      object-fit: contain;
       border-radius: 5px;
       transition: 0.3s;
     }
@@ -165,9 +162,15 @@
       <a href="https://adriel-sanchez.github.io/Portfolio/">Back to Portfolio</a>
     </div>
 
-    <!-- PortScanner-AS Project Card -->
+    <!-- PortScanner-AS Project Card with carousel -->
     <div class="project">
-      <img src="https://adriel-sanchez.github.io/Portfolio/Images/PS.png" alt="PortScanner-AS Image"/>
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <div id="ps-carousel" style="position: relative; width: 250px;">
+          <img id="ps-carousel-image" src="https://adriel-sanchez.github.io/Portfolio/Images/PSD.png" alt="PortScanner Image" style="width: 250px; height: auto; border-radius: 8px; object-fit: contain;">
+          <button onclick="changePSImage(-1)" style="position: absolute; left: -30px; top: 40%; background: none; border: none; color: #00bfff; font-size: 1.5rem; cursor: pointer;">&#8249;</button>
+          <button onclick="changePSImage(1)" style="position: absolute; right: -30px; top: 40%; background: none; border: none; color: #00bfff; font-size: 1.5rem; cursor: pointer;">&#8250;</button>
+        </div>
+      </div>
       <div>
         <h2>PortScanner</h2>
         <p>Tool that scans ports on a target, identifies open services, and retrieves banners.</p>
@@ -181,10 +184,10 @@
     <!-- KeyLogger-AS Project Card -->
     <div class="project">
       <div style="display: flex; flex-direction: column; align-items: center;">
-        <div id="carousel" style="position: relative; width: 250px;">
-          <img id="carousel-image" src="https://adriel-sanchez.github.io/Portfolio/Images/KLD.png" alt="KeyLogger Image" style="width: 250px; height: auto; border-radius: 8px; object-fit: contain;">
-          <button onclick="changeImage(-1)" style="position: absolute; left: -30px; top: 40%; background: none; border: none; color: #00bfff; font-size: 1.5rem; cursor: pointer;">&#8249;</button>
-          <button onclick="changeImage(1)" style="position: absolute; right: -30px; top: 40%; background: none; border: none; color: #00bfff; font-size: 1.5rem; cursor: pointer;">&#8250;</button>
+        <div id="kl-carousel" style="position: relative; width: 250px;">
+          <img id="kl-carousel-image" src="https://adriel-sanchez.github.io/Portfolio/Images/KLD.png" alt="KeyLogger Image" style="width: 250px; height: auto; border-radius: 8px; object-fit: contain;">
+          <button onclick="changeKLImage(-1)" style="position: absolute; left: -30px; top: 40%; background: none; border: none; color: #00bfff; font-size: 1.5rem; cursor: pointer;">&#8249;</button>
+          <button onclick="changeKLImage(1)" style="position: absolute; right: -30px; top: 40%; background: none; border: none; color: #00bfff; font-size: 1.5rem; cursor: pointer;">&#8250;</button>
         </div>
       </div>
       <div>
@@ -196,7 +199,6 @@
         </div>
       </div>
     </div>
-
   </main>
 
   <footer>
@@ -211,15 +213,27 @@
   </footer>
 
   <script>
-    const images = [
+    // PortScanner carousel
+    const psImages = [
+      'https://adriel-sanchez.github.io/Portfolio/Images/PSD.png',
+      'https://adriel-sanchez.github.io/Portfolio/Images/PS.png'
+    ];
+    let psCurrent = 0;
+    function changePSImage(dir) {
+      psCurrent = (psCurrent + dir + psImages.length) % psImages.length;
+      document.getElementById('ps-carousel-image').src = psImages[psCurrent];
+    }
+
+    // KeyLogger carousel
+    const klImages = [
       'https://adriel-sanchez.github.io/Portfolio/Images/KLD.png',
       'https://adriel-sanchez.github.io/Portfolio/Images/KL.png',
       'https://adriel-sanchez.github.io/Portfolio/Images/KLO.png'
     ];
-    let current = 0;
-    function changeImage(direction) {
-      current = (current + direction + images.length) % images.length;
-      document.getElementById('carousel-image').src = images[current];
+    let klCurrent = 0;
+    function changeKLImage(dir) {
+      klCurrent = (klCurrent + dir + klImages.length) % klImages.length;
+      document.getElementById('kl-carousel-image').src = klImages[klCurrent];
     }
   </script>
 
