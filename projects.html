@@ -82,7 +82,7 @@
     }
 
     .project img {
-      width: 250px; /* Increased width */
+      width: 250px;
       height: auto;
       border-radius: 8px;
       object-fit: contain;
@@ -148,11 +148,6 @@
       transition: 0.3s;
     }
 
-    .social-icons img {
-      width: 30px;
-      height: 30px;
-    }
-
     .social-icons img:hover {
       transform: scale(1.1);
     }
@@ -176,14 +171,32 @@
       <div>
         <h2>PortScanner</h2>
         <p>Tool that scans ports on a target, identifies open services, and retrieves banners.</p>
-
-        <!-- Centered download buttons -->
         <div style="display: flex; justify-content: center; gap: 15px;">
           <a href="https://adriel-sanchez.github.io/Portfolio/Files/PortScanner-AS.exe" download="PortScanner-AS.exe">Download Application</a>
           <a href="https://adriel-sanchez.github.io/Portfolio/Files/PortScanner-AS-SourceFile.py" download="PortScanner-AS-SourceFile.py">Download Source File</a>
         </div>
       </div>
     </div>
+
+    <!-- KeyLogger-AS Project Card -->
+    <div class="project">
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <div id="carousel" style="position: relative; width: 250px;">
+          <img id="carousel-image" src="https://adriel-sanchez.github.io/Portfolio/Images/KLD.png" alt="KeyLogger Image" style="width: 250px; height: auto; border-radius: 8px; object-fit: contain;">
+          <button onclick="changeImage(-1)" style="position: absolute; left: -30px; top: 40%; background: none; border: none; color: #00bfff; font-size: 1.5rem; cursor: pointer;">&#8249;</button>
+          <button onclick="changeImage(1)" style="position: absolute; right: -30px; top: 40%; background: none; border: none; color: #00bfff; font-size: 1.5rem; cursor: pointer;">&#8250;</button>
+        </div>
+      </div>
+      <div>
+        <h2>KeyLogger-AS</h2>
+        <p>Project that records keystrokes for educational and authorized testing purposes only.</p>
+        <div style="display: flex; justify-content: center; gap: 15px;">
+          <a href="https://adriel-sanchez.github.io/Portfolio/Files/KeyLogger-AS.exe" download="KeyLogger-AS.exe">Download Application</a>
+          <a href="https://adriel-sanchez.github.io/Portfolio/Files/KeyLogger-AS-SourceFile.py" download="KeyLogger-AS-SourceFile.py">Download Source File</a>
+        </div>
+      </div>
+    </div>
+
   </main>
 
   <footer>
@@ -196,6 +209,19 @@
       </a>
     </div>
   </footer>
+
+  <script>
+    const images = [
+      'https://adriel-sanchez.github.io/Portfolio/Images/KLD.png',
+      'https://adriel-sanchez.github.io/Portfolio/Images/KL.png',
+      'https://adriel-sanchez.github.io/Portfolio/Images/KLO.png'
+    ];
+    let current = 0;
+    function changeImage(direction) {
+      current = (current + direction + images.length) % images.length;
+      document.getElementById('carousel-image').src = images[current];
+    }
+  </script>
 
 </body>
 </html>
