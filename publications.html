@@ -48,13 +48,6 @@
       flex-wrap: wrap;
     }
 
-    header h1 {
-      font-size: 2.5rem;
-      color: var(--accent-color);
-      text-align: center;
-      flex: 1;
-    }
-
     .back-link {
       color: var(--accent-color);
       text-decoration: none;
@@ -138,6 +131,13 @@
       margin: 40px auto;
       padding: 0 20px;
       flex: 1;
+    }
+
+    main h1 {
+      text-align: center;
+      color: var(--accent-color);
+      margin-bottom: 40px;
+      font-size: 2.5rem;
     }
 
     .publication {
@@ -225,7 +225,6 @@
 
   <header>
     <a href="https://adriel-sanchez.github.io/Portfolio/" class="back-link">Back to Portfolio</a>
-    <h1>My Publications</h1>
     <label class="switch">
       <i class="fas fa-moon switch-icons moon"></i>
       <input type="checkbox" id="theme-toggle" onclick="document.body.classList.toggle('light-mode')">
@@ -235,6 +234,8 @@
   </header>
 
   <main>
+    <h1>My Publications</h1>
+
     <div class="publication">
       <h2>Publication name</h2>
       <p>Description.</p>
