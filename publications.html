@@ -1,8 +1,9 @@
+<!-- PUBLICATIONS PAGE -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Publications - Adriel's Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -12,51 +13,37 @@
       --sun-color: #ffaa00;
       --moon-color: #3a8eff;
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html, body {
-      height: 100%;
-      scroll-behavior: smooth;
-      display: flex;
-      flex-direction: column;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { min-height: 100%; scroll-behavior: smooth; display: flex; flex-direction: column; }
     body {
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(to right, #0a0a0a, #121212, #1a1a1a);
-      color: #ffffff;
-      flex: 1;
+      color: #f1f1f1;
       transition: background 0.3s ease, color 0.3s ease;
+      flex: 1;
     }
-
-    body.light-mode {
-      background: #f1f1f1;
-      color: #121212;
-    }
-
-    header {
-      background-color: #0e0e0e;
-      padding: 20px 40px;
+    body.light-mode { background: #f1f1f1; color: #121212; }
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #0e0e0e;
+      padding: 10px 40px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      z-index: 2;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
     }
-
-    .back-link {
-      color: var(--accent-color);
+    nav ul { display: flex; list-style: none; gap: 40px; }
+    nav a {
       text-decoration: none;
+      color: var(--accent-color);
       font-weight: 600;
       position: relative;
       transition: 0.3s;
     }
-
-    .back-link::before {
+    nav a::before {
       content: "";
       position: absolute;
       width: 100%;
@@ -68,27 +55,10 @@
       transform: scaleX(0);
       transition: all 0.3s ease-in-out;
     }
-
-    .back-link:hover::before {
-      visibility: visible;
-      transform: scaleX(1);
-    }
-
-    .back-link:hover {
-      color: #ffffff;
-    }
-
-    .switch {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-    }
-
-    .switch input {
-      display: none;
-    }
-
+    nav a:hover::before { visibility: visible; transform: scaleX(1); }
+    nav a:hover { color: #ffffff; }
+    .switch { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+    .switch input { display: none; }
     .slider {
       position: relative;
       width: 50px;
@@ -97,7 +67,6 @@
       border-radius: 24px;
       transition: background-color 0.4s;
     }
-
     .slider:before {
       content: "";
       position: absolute;
@@ -109,69 +78,43 @@
       transition: transform 0.4s;
       border-radius: 50%;
     }
-
-    input:checked + .slider {
-      background-color: var(--sun-color);
+    input:checked + .slider { background-color: var(--sun-color); }
+    input:checked + .slider:before { transform: translateX(26px); }
+    .switch-icons.sun { color: var(--sun-color); }
+    .switch-icons.moon { color: var(--moon-color); }
+    header {
+      text-align: center;
+      padding: 100px 20px 20px;
+      z-index: 1;
+      position: relative;
     }
-
-    input:checked + .slider:before {
-      transform: translateX(26px);
-    }
-
-    .switch-icons.sun {
-      color: var(--sun-color);
-    }
-
-    .switch-icons.moon {
-      color: var(--moon-color);
-    }
-
+    header h1 { font-size: 3.5rem; color: var(--accent-color); }
     main {
       max-width: 1000px;
       margin: 40px auto;
       padding: 0 20px;
       flex: 1;
     }
-
-    main h1 {
-      text-align: center;
-      color: var(--accent-color);
-      margin-bottom: 40px;
-      font-size: 2.5rem;
-    }
-
     .publication {
       background-color: rgba(255,255,255,0.05);
       margin-bottom: 30px;
       border-radius: 10px;
       padding: 30px;
       transition: 0.3s;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
+      animation: fadeSlide 1.8s ease forwards;
+      transform: translateY(-68px);
     }
-
-    body.light-mode .publication {
-      background-color: rgba(0,0,0,0.05);
-    }
-
     .publication:hover {
-      box-shadow: 0 0 10px #00bfff44;
+      transform: translateY(-74px) scale(1.03);
+      box-shadow: 0 14px 40px rgba(58, 142, 255, 0.4);
     }
-
-    .publication h2 {
-      color: var(--accent-color);
-      margin-bottom: 15px;
+    @keyframes fadeSlide {
+      0% { opacity: 0; transform: translateY(-180px); }
+      100% { opacity: 1; transform: translateY(-38px); }
     }
-
-    .publication p {
-      color: #ccc;
-    }
-
-    body.light-mode .publication p {
-      color: #333;
-    }
-
+    .publication h2 { color: var(--accent-color); margin-bottom: 15px; }
+    .publication p { color: #ccc; }
+    body.light-mode .publication p { color: #333; }
     .publication a {
       display: inline-block;
       margin-top: 15px;
@@ -182,77 +125,46 @@
       border-radius: 6px;
       transition: 0.3s;
     }
-
     .publication a:hover {
       background-color: var(--accent-color);
       color: #121212;
     }
-
     footer {
       background-color: #0e0e0e;
       padding: 12px 20px;
       text-align: center;
       color: #999;
     }
-
-    .social-icons {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    .social-icons a {
-      display: block;
-      width: 40px;
-      height: 40px;
-    }
-
-    .social-icons img {
-      width: 75%;
-      height: 75%;
-      object-fit: contain;
-      border-radius: 5px;
-      transition: transform 0.3s ease, filter 0.3s ease;
-    }
-
-    .social-icons img:hover {
-      transform: scale(1.2);
-      filter: brightness(1.3);
-    }
   </style>
 </head>
 <body>
-
-  <header>
-    <a href="https://adriel-sanchez.github.io/Portfolio/" class="back-link">Back to Portfolio</a>
+  <nav>
+    <ul>
+      <li><a href="index.html">Back to Portfolio</a></li>
+      <li><a href="projects.html">Projects</a></li>
+    </ul>
     <label class="switch">
       <i class="fas fa-moon switch-icons moon"></i>
-      <input type="checkbox" id="theme-toggle" onclick="document.body.classList.toggle('light-mode')">
+      <input type="checkbox" onclick="document.body.classList.toggle('light-mode')">
       <span class="slider"></span>
       <i class="fas fa-sun switch-icons sun"></i>
     </label>
+  </nav>
+
+  <header>
+    <h1>My Publications</h1>
   </header>
 
   <main>
-    <h1>My Publications</h1>
-
     <div class="publication">
-      <h2>Publication name</h2>
-      <p>Description.</p>
+      <h2>Sample Publication Title</h2>
+      <p>This is a placeholder for a future publication. Description and link will go here when available.</p>
       <a href="#">Read Article</a>
     </div>
   </main>
 
   <footer>
-    <div class="social-icons">
-      <a href="https://www.linkedin.com/in/adrielsanchez" target="_blank">
-        <img src="https://adriel-sanchez.github.io/Portfolio/Images/Linkedin.png" alt="LinkedIn Icon" />
-      </a>
-      <a href="https://www.credly.com/users/adriel-sanchez.6d9c4577" target="_blank">
-        <img src="https://adriel-sanchez.github.io/Portfolio/Images/Credly.png" alt="Credly Icon" />
-      </a>
-    </div>
+    <p>&copy; 2025 Adriel Sanchez</p>
   </footer>
-
 </body>
 </html>
