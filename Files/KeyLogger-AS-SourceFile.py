@@ -1,3 +1,5 @@
+#Adriel Sanchez
+#April 2025
 import tkinter as tk
 from pynput import keyboard
 import threading
