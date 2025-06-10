@@ -192,10 +192,10 @@
   <main>
     <div class="project">
       <div class="carousel">
-        <img id="ps-carousel-image" src="https://adriel-sanchez.github.io/Portfolio/Images/LS.png" alt="Linux Server Image">
+        <img id="ps-carousel-image" src="https://adriel-sanchez.github.io/Portfolio/Images/LSD.png" alt="Linux Server Image">
         <div>
-          <button onclick="changePSImage(-1)">&#8249;</button>
-          <button onclick="changePSImage(1)">&#8250;</button>
+          <button onclick="changeLSImage(-1)">&#8249;</button>
+          <button onclick="changeLSImage(1)">&#8250;</button>
         </div>
       </div>
       <div class="project-details">
@@ -234,14 +234,15 @@
   </footer>
 
   <script>
-    const psImages = [
-      'https://adriel-sanchez.github.io/Portfolio/Images/PSD.png',
-      'https://adriel-sanchez.github.io/Portfolio/Images/PS.png'
+    const lsImages = [
+      'https://adriel-sanchez.github.io/Portfolio/Images/LSD.png',
+      'https://adriel-sanchez.github.io/Portfolio/Images/LSO.png',
+      'https://adriel-sanchez.github.io/Portfolio/Images/LSU.png'
     ];
-    let psCurrent = 0;
-    function changePSImage(dir) {
-      psCurrent = (psCurrent + dir + psImages.length) % psImages.length;
-      document.getElementById('ps-carousel-image').src = psImages[psCurrent];
+    let lsCurrent = 0;
+    function changeLSImage(dir) {
+      lsCurrent = (lsCurrent + dir + lsImages.length) % lsImages.length;
+      document.getElementById('ls-carousel-image').src = lsImages[lsCurrent];
     }
 
     const klImages = [
