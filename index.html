@@ -285,18 +285,25 @@
   cursor: pointer;
   z-index: 3;
 }
-    .trail {
+  .trail {
   position: absolute;
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background-size: cover;
   background-position: center;
-  opacity: 0.4;
+  opacity: 0.2;
   pointer-events: none;
-  z-index: 2;
-  animation: fadeOut 0.8s ease-out forwards;
+  z-index: 1;
+  filter: blur(2px);
+  animation: fadeOut 0.6s ease-out forwards;
 }
+
+@keyframes fadeOut {
+  0% { opacity: 0.2; transform: scale(0.9); }
+  100% { opacity: 0; transform: scale(0.5); }
+}
+
 
 @keyframes fadeOut {
   0% { opacity: 0.4; transform: scale(1); }
@@ -439,26 +446,43 @@ setTimeout(() => trail.remove(), 800);
 const balls = [Ball("secball"), Ball("netball")];
 
 function animate() {
-  balls.forEach(ball => ball.update());
+  // Ball-to-ball elastic collision
+const dx = b.x - a.x;
+const dy = b.y - a.y;
+const distance = Math.sqrt(dx * dx + dy * dy);
+const minDist = a.radius * 2;
 
-  // Ball-to-ball collision
-  const [a, b] = balls;
-  const dx = b.x - a.x;
-  const dy = b.y - a.y;
-  const distance = Math.sqrt(dx * dx + dy * dy);
-  const minDist = a.radius * 2;
+if (distance < minDist) {
+  // Normalize vector
+  const angle = Math.atan2(dy, dx);
+  const sin = Math.sin(angle);
+  const cos = Math.cos(angle);
 
-  if (distance < minDist) {
-    const angle = Math.atan2(dy, dx);
-    const targetX = a.x + Math.cos(angle) * minDist;
-    const targetY = a.y + Math.sin(angle) * minDist;
-    const ax = (targetX - b.x) * 0.05;
-    const ay = (targetY - b.y) * 0.05;
+  // Rotate velocities
+  const v1 = { x: a.vx * cos + a.vy * sin, y: a.vy * cos - a.vx * sin };
+  const v2 = { x: b.vx * cos + b.vy * sin, y: b.vy * cos - b.vx * sin };
 
-    a.vx -= ax;
-    a.vy -= ay;
-    b.vx += ax;
-    b.vy += ay;
+  // Swap x velocities (elastic collision)
+  const temp = v1.x;
+  v1.x = v2.x;
+  v2.x = temp;
+
+  // Rotate back
+  a.vx = v1.x * cos - v1.y * sin;
+  a.vy = v1.y * cos + v1.x * sin;
+  b.vx = v2.x * cos - v2.y * sin;
+  b.vy = v2.y * cos + v2.x * sin;
+
+  // Separate balls to avoid sticking
+  const overlap = minDist - distance;
+  const separationX = overlap * cos / 2;
+  const separationY = overlap * sin / 2;
+  a.x -= separationX;
+  a.y -= separationY;
+  b.x += separationX;
+  b.y += separationY;
+}
+
   }
 
   requestAnimationFrame(animate);
