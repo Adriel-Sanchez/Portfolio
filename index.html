@@ -285,31 +285,26 @@
   cursor: pointer;
   z-index: 3;
 }
-  .trail {
+.trail {
   position: absolute;
-  width: 30px;
-  height: 30px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background-size: cover;
   background-position: center;
-  opacity: 0.2;
+  opacity: 0.4;
   pointer-events: none;
-  z-index: 1;
-  filter: blur(2px);
-  animation: fadeOut 0.6s ease-out forwards;
+  z-index: 2;
+  filter: blur(1px);
+  animation: fadeOut 0.3s ease-out forwards;
+}
+
 }
 
 @keyframes fadeOut {
   0% { opacity: 0.2; transform: scale(0.9); }
   100% { opacity: 0; transform: scale(0.5); }
 }
-
-
-@keyframes fadeOut {
-  0% { opacity: 0.4; transform: scale(1); }
-  100% { opacity: 0; transform: scale(0.5); }
-}
-
 
   </style>
 </head>
