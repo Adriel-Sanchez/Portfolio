@@ -449,47 +449,59 @@ function animate() {
   balls.forEach(ball => ball.update());
 
   // Ball-to-ball elastic collision
-const [a, b] = balls;
-const dx = b.x - a.x;
-const dy = b.y - a.y;
-const distance = Math.sqrt(dx * dx + dy * dy);
-const minDist = a.radius * 2;
+  const a = balls[0];
+  const b = balls[1];
+  const dx = b.x - a.x;
+  const dy = b.y - a.y;
+  const distance = Math.sqrt(dx * dx + dy * dy);
+  const minDist = a.radius * 2;
 
-if (distance < minDist) {
-  // Normalize vector
-  const angle = Math.atan2(dy, dx);
-  const sin = Math.sin(angle);
-  const cos = Math.cos(angle);
+  if (distance < minDist) {
+    // Normalize vector
+    const angle = Math.atan2(dy, dx);
+    const sin = Math.sin(angle);
+    const cos = Math.cos(angle);
 
-  // Rotate velocities
-  const v1 = { x: a.vx * cos + a.vy * sin, y: a.vy * cos - a.vx * sin };
-  const v2 = { x: b.vx * cos + b.vy * sin, y: b.vy * cos - b.vx * sin };
+    // Rotate velocities
+    const v1 = {
+      x: a.vx * cos + a.vy * sin,
+      y: a.vy * cos - a.vx * sin
+    };
+    const v2 = {
+      x: b.vx * cos + b.vy * sin,
+      y: b.vy * cos - b.vx * sin
+    };
 
-  // Swap x velocities (elastic collision)
-  const temp = v1.x;
-  v1.x = v2.x;
-  v2.x = temp;
+    // Swap x velocities (elastic collision)
+    const temp = v1.x;
+    v1.x = v2.x;
+    v2.x = temp;
 
-  // Rotate back
-  a.vx = v1.x * cos - v1.y * sin;
-  a.vy = v1.y * cos + v1.x * sin;
-  b.vx = v2.x * cos - v2.y * sin;
-  b.vy = v2.y * cos + v2.x * sin;
+    // Rotate back
+    a.vx = v1.x * cos - v1.y * sin;
+    a.vy = v1.y * cos + v1.x * sin;
+    b.vx = v2.x * cos - v2.y * sin;
+    b.vy = v2.y * cos + v2.x * sin;
 
-  // Separate balls to avoid sticking
-  const overlap = minDist - distance;
-  const separationX = overlap * cos / 2;
-  const separationY = overlap * sin / 2;
-  a.x -= separationX;
-  a.y -= separationY;
-  b.x += separationX;
-  b.y += separationY;
-}
+    // Separate balls to avoid sticking
+    const overlap = minDist - distance;
+    const separationX = (overlap * cos) / 2;
+    const separationY = (overlap * sin) / 2;
+    a.x -= separationX;
+    a.y -= separationY;
+    b.x += separationX;
+    b.y += separationY;
 
+    // Update DOM positions after separation
+    a.el.style.left = a.x + "px";
+    a.el.style.top = a.y + "px";
+    b.el.style.left = b.x + "px";
+    b.el.style.top = b.y + "px";
   }
 
   requestAnimationFrame(animate);
 }
+
 
 window.onload = animate;
 </script>
