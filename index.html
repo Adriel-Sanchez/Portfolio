@@ -277,14 +277,32 @@
     
     .ball {
   position: absolute;
-  width: 40px;
-  height: 40px;
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
   background-size: cover;
   background-position: center;
   cursor: pointer;
   z-index: 3;
 }
+    .trail {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 2;
+  animation: fadeOut 0.8s ease-out forwards;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 0.4; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.5); }
+}
+
 
   </style>
 </head>
@@ -430,6 +448,17 @@ function animate() {
     b.vx += ax;
     b.vy += ay;
   }
+      // Create trail
+    const trail = document.createElement("div");
+    trail.className = "trail";
+    trail.style.left = x + "px";
+    trail.style.top = y + "px";
+    trail.style.backgroundImage = el.style.backgroundImage;
+    document.body.appendChild(trail);
+
+    // Remove trail after animation
+    setTimeout(() => trail.remove(), 800);
+
 
   requestAnimationFrame(animate);
 }
