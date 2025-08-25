@@ -277,8 +277,8 @@
     
     .ball {
   position: absolute;
-  width: 80px;
-  height: 80px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background-size: cover;
   background-position: center;
@@ -319,10 +319,10 @@
     </a>
   </main>
   
-<a href="https://www.credly.com/badges/586fa6c6-0216-4a27-b0bf-89777435bbd4" target="_blank">
+<a href="https://www.credly.com/badges/1d4b3df1-ca7d-4632-8409-1330e313b242" target="_blank">
   <div class="ball" id="secball" style="background-image: url('https://adriel-sanchez.github.io/Portfolio/Images/Secball.png');"></div>
 </a>
-<a href="https://www.credly.com/badges/1d4b3df1-ca7d-4632-8409-1330e313b242" target="_blank">
+<a href="https://www.credly.com/badges/586fa6c6-0216-4a27-b0bf-89777435bbd4" target="_blank">
   <div class="ball" id="netball" style="background-image: url('https://adriel-sanchez.github.io/Portfolio/Images/Netball.png');"></div>
 </a>
 
@@ -343,49 +343,100 @@
     }
   </script>
   
-  <script>
-  function animateBall(ball) {
-    let x = Math.random() * (window.innerWidth - 80);
-    let y = -100;
-    let vx = (Math.random() - 0.5) * 10;
-    let vy = Math.random() * 5 + 5;
-    const gravity = 0.5;
-    const bounce = 0.6;
-    const friction = 0.98;
+<script>
+function Ball(id) {
+  const el = document.getElementById(id);
+  const radius = 25; // half of 50px
+  let x = Math.random() * (window.innerWidth - radius * 2);
+  let y = -100;
+  let vx = (Math.random() - 0.5) * 8;
+  let vy = Math.random() * 5 + 5;
+  const gravity = 0.4;
+  const bounce = 0.7;
+  const friction = 0.98;
 
-    function frame() {
-      vy += gravity;
-      x += vx;
-      y += vy;
+  function update() {
+    vy += gravity;
+    x += vx;
+    y += vy;
 
-      // Bounce off bottom
-      if (y + 80 > window.innerHeight) {
-        y = window.innerHeight - 80;
-        vy *= -bounce;
-        vx *= friction;
-      }
-
-      // Bounce off sides
-      if (x < 0 || x + 80 > window.innerWidth) {
-        vx *= -bounce;
-      }
-
-      ball.style.left = x + "px";
-      ball.style.top = y + "px";
-
-      if (Math.abs(vy) > 0.5 || Math.abs(vx) > 0.5) {
-        requestAnimationFrame(frame);
-      }
+    // Bounce off bottom
+    if (y + radius * 2 > window.innerHeight) {
+      y = window.innerHeight - radius * 2;
+      vy *= -bounce;
+      vx *= friction;
+    }
+    
+    // Bounce off footer
+    const footer = document.querySelector("footer");
+    const footerRect = footer.getBoundingClientRect();
+    if (
+      y + radius * 2 > footerRect.top &&
+      x + radius * 2 > footerRect.left &&
+      x < footerRect.right
+    ) {
+      y = footerRect.top - radius * 2;
+      vy *= -bounce;
+      vx *= friction;
     }
 
-    frame();
+    // Bounce off sides
+    if (x < 0 || x + radius * 2 > window.innerWidth) {
+      vx *= -bounce;
+    }
+
+    // Bounce off sections
+    document.querySelectorAll('.section').forEach(section => {
+      const rect = section.getBoundingClientRect();
+      if (
+        x + radius * 2 > rect.left &&
+        x < rect.right &&
+        y + radius * 2 > rect.top &&
+        y < rect.bottom
+      ) {
+        vy *= -bounce;
+        y = rect.top - radius * 2;
+      }
+    });
+
+    el.style.left = x + "px";
+    el.style.top = y + "px";
   }
 
-  window.onload = () => {
-    animateBall(document.getElementById("secball"));
-    animateBall(document.getElementById("netball"));
-  };
+  return { el, update, x, y, vx, vy, radius };
+}
+
+const balls = [Ball("secball"), Ball("netball")];
+
+function animate() {
+  balls.forEach(ball => ball.update());
+
+  // Ball-to-ball collision
+  const [a, b] = balls;
+  const dx = b.x - a.x;
+  const dy = b.y - a.y;
+  const distance = Math.sqrt(dx * dx + dy * dy);
+  const minDist = a.radius * 2;
+
+  if (distance < minDist) {
+    const angle = Math.atan2(dy, dx);
+    const targetX = a.x + Math.cos(angle) * minDist;
+    const targetY = a.y + Math.sin(angle) * minDist;
+    const ax = (targetX - b.x) * 0.05;
+    const ay = (targetY - b.y) * 0.05;
+
+    a.vx -= ax;
+    a.vy -= ay;
+    b.vx += ax;
+    b.vy += ay;
+  }
+
+  requestAnimationFrame(animate);
+}
+
+window.onload = animate;
 </script>
+
 
 </body>
 </html>
