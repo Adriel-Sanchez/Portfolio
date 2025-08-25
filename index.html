@@ -419,6 +419,18 @@ function Ball(id) {
 
     el.style.left = x + "px";
     el.style.top = y + "px";
+
+    // Create trail
+const trail = document.createElement("div");
+trail.className = "trail";
+trail.style.left = x + "px";
+trail.style.top = y + "px";
+trail.style.backgroundImage = el.style.backgroundImage;
+document.body.appendChild(trail);
+
+// Remove trail after animation
+setTimeout(() => trail.remove(), 800);
+
   }
 
   return { el, update, x, y, vx, vy, radius };
@@ -448,17 +460,6 @@ function animate() {
     b.vx += ax;
     b.vy += ay;
   }
-      // Create trail
-    const trail = document.createElement("div");
-    trail.className = "trail";
-    trail.style.left = x + "px";
-    trail.style.top = y + "px";
-    trail.style.backgroundImage = el.style.backgroundImage;
-    document.body.appendChild(trail);
-
-    // Remove trail after animation
-    setTimeout(() => trail.remove(), 800);
-
 
   requestAnimationFrame(animate);
 }
