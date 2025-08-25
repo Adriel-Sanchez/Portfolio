@@ -446,7 +446,10 @@ setTimeout(() => trail.remove(), 800);
 const balls = [Ball("secball"), Ball("netball")];
 
 function animate() {
+  balls.forEach(ball => ball.update());
+
   // Ball-to-ball elastic collision
+const [a, b] = balls;
 const dx = b.x - a.x;
 const dy = b.y - a.y;
 const distance = Math.sqrt(dx * dx + dy * dy);
