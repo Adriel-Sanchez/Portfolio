@@ -274,18 +274,6 @@
       transform: scale(1.2);
       filter: brightness(1.3);
     }
-
-    /* Ball animation style */
-    .ball {
-      position: absolute;
-      width: 40px;
-      height: 40px;
-      background-color: var(--accent-color);
-      border-radius: 50%;
-      z-index: 0;
-      pointer-events: none;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
   </style>
 </head>
 <body>
@@ -321,4 +309,19 @@
 
   <footer>
     <div class="social-icons">
-      <a href="https://www.linkedin
+      <a href="https://www.linkedin.com/in/adrielsanchez" target="_blank">
+        <img src="https://adriel-sanchez.github.io/Portfolio/Images/Linkedin.png" alt="LinkedIn Icon" />
+      </a>
+      <a href="https://www.credly.com/users/adriel-sanchez.6d9c4577" target="_blank">
+        <img src="https://adriel-sanchez.github.io/Portfolio/Images/Credly.png" alt="Credly Icon" />
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('light-mode');
+    }
+  </script>
+</body>
+</html>
