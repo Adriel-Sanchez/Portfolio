@@ -285,26 +285,6 @@
   cursor: pointer;
   z-index: 3;
 }
-.trail {
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-size: cover;
-  background-position: center;
-  opacity: 0.4;
-  pointer-events: none;
-  z-index: 2;
-  filter: blur(1px);
-  animation: fadeOut 0.3s ease-out forwards;
-}
-
-}
-
-@keyframes fadeOut {
-  0% { opacity: 0.2; transform: scale(0.9); }
-  100% { opacity: 0; transform: scale(0.5); }
-}
 
   </style>
 </head>
@@ -421,18 +401,6 @@ function Ball(id) {
 
     el.style.left = x + "px";
     el.style.top = y + "px";
-
-    // Create trail
-const trail = document.createElement("div");
-trail.className = "trail";
-trail.style.left = x + "px";
-trail.style.top = y + "px";
-trail.style.backgroundImage = el.style.backgroundImage;
-document.body.appendChild(trail);
-
-// Remove trail after animation
-setTimeout(() => trail.remove(), 800);
-
   }
 
   return { el, update, x, y, vx, vy, radius };
