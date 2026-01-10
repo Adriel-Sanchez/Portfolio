@@ -10,7 +10,7 @@
     <style>
         :root {
             --accent-color: #3a8eff;
-            --text-muted: #bbb; /* tagline + nav default color */
+            --text-muted: #bbb;
         }
 
         * {
@@ -90,7 +90,6 @@
             font-size: clamp(2.5rem, 5vw, 4rem);
             color: var(--accent-color);
             font-weight: 700;
-            font-family: 'Inter', sans-serif;
         }
 
         header p {
@@ -100,8 +99,36 @@
             font-family: 'Poppins', sans-serif;
         }
 
+        /* ARROW */
+        .arrow-wrapper {
+            position: absolute;
+            top: -140px;
+            left: calc(50% - 110px);
+            text-align: center;
+        }
+
+        .arrow-wrapper p {
+            margin-bottom: 6px;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            transform: rotate(-4deg);
+        }
+
+        .arrow-wrapper svg {
+            width: 100px;
+            height: 100px;
+            fill: none;
+            stroke: #fff;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
         /* FOOTER */
         footer {
+            position: relative; /* Needed so arrow positions relative to footer */
             text-align: center;
             padding: 20px;
             background: #0e0e0e;
@@ -165,6 +192,17 @@
 
     <!-- FOOTER -->
     <footer>
+
+        <!-- ARROW ABOVE LINKEDIN -->
+        <div class="arrow-wrapper">
+            <p>I'm also on LinkedIn!</p>
+            <svg viewBox="0 0 100 100">
+                <path d="M50,10 C50,40 50,70 50,85" />
+                <line x1="50" y1="85" x2="45" y2="75" />
+                <line x1="50" y1="85" x2="55" y2="75" />
+            </svg>
+        </div>
+
         <div class="social-icons">
             <a href="https://www.linkedin.com/in/adrielsanchez" target="_blank">
                 <img src="https://adriel-sanchez.github.io/Portfolio/Images/Linkedin.png" alt="LinkedIn" />
