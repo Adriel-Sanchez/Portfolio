@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Projects and publications by Adriel Sanchez covering cybersecurity, Linux server administration, and security research." />
+  <meta name="description" content="Projects by Adriel Sanchez covering cybersecurity, Linux server administration, and security research." />
   <title>Adriel Sanchez | Projects</title>
+  <!-- Publications removed -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -74,30 +75,7 @@
       font-family: 'Poppins', sans-serif;
     }
 
-    /* FILTER BAR */
-    .filter-bar {
-      text-align: center;
-      margin: 12px 0 26px;
-      padding: 0 20px;
-    }
-    .filter-bar button {
-      background: transparent;
-      border: 2px solid var(--accent-color);
-      color: var(--accent-color);
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      padding: 8px 16px;
-      margin: 0 8px 8px 8px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.3s ease, color 0.3s ease, transform 0.15s ease;
-    }
-    .filter-bar button:hover,
-    .filter-bar button.active {
-      background: var(--accent-color);
-      color: #121212;
-      transform: translateY(-1px);
-    }
+    /* Filter bar removed with publications */
 
     /* MAIN */
     main {
@@ -193,20 +171,16 @@
       transform: translateY(-2px);
     }
 
+    /* .pub-date and .card.pub styles removed with publications section */
+
     /* DATES */
-    .date, .pub-date {
+    .date {
       position: absolute;
       bottom: 12px;
       right: 16px;
       font-size: 0.85rem;
       color: #aaa;
       font-style: italic;
-    }
-
-    /* Publications: single-column card */
-    .card.pub {
-      grid-template-columns: 1fr;
-      text-align: center;
     }
 
     /* FOOTER */
@@ -265,22 +239,13 @@
 
   <!-- HEADER -->
   <header>
-    <h1>Projects & Publications</h1>
+    <h1>Projects</h1>
     <p>Cybersecurity | Analytics | Network Hardening</p>
   </header>
 
-  <!-- FILTER BAR -->
-  <div class="filter-bar">
-    <button class="active" onclick="filterContent('all', this)">Show All</button>
-    <button onclick="filterContent('project', this)">Projects Only</button>
-    <button onclick="filterContent('pub', this)">Publications Only</button>
-  </div>
-
   <!-- MAIN -->
   <main>
-    <!-- PROJECTS -->
-    <h2 id="projects-header" class="section-title">Projects</h2>
-
+    
     <!-- Project: Linux Server Deployment & Configuration -->
     <section class="card project">
       <div class="media">
@@ -320,20 +285,6 @@
       <span class="date">April 2025</span>
     </section>
 
-    <!-- PUBLICATIONS -->
-    <h2 id="publications-header" class="section-title">Publications</h2>
-
-    <!-- Publication: Encryption vs Hashing -->
-    <section class="card pub">
-      <div class="details">
-        <h3>Encryption vs Hashing: Understanding Their Roles in Cybersecurity</h3>
-        <p>A clear breakdown of how encryption and hashing work, where each is used, and why understanding both is essential to data protection.</p>
-        <div class="actions">
-          <a href="https://osf.io/preprints/osf/vefgx_v1" target="_blank" rel="noopener">Read article</a>
-        </div>
-      </div>
-      <span class="pub-date">April 2025</span>
-    </section>
   </main>
 
   <!-- FOOTER -->
@@ -353,39 +304,7 @@
 
   <!-- SCRIPTS -->
   <script>
-    // Filter logic (also toggles headers)
-    function filterContent(type, btn) {
-      document.querySelectorAll('.filter-bar button').forEach(b => b.classList.remove('active'));
-      if (btn) btn.classList.add('active');
-
-      const projects = document.querySelectorAll('.card.project');
-      const pubs = document.querySelectorAll('.card.pub');
-      const projectsHeader = document.getElementById('projects-header');
-      const pubsHeader = document.getElementById('publications-header');
-
-      if (type === 'project') {
-        projects.forEach(el => el.classList.remove('hidden'));
-        pubs.forEach(el => el.classList.add('hidden'));
-        projectsHeader.style.display = 'block';
-        pubsHeader.style.display = 'none';
-      } else if (type === 'pub') {
-        projects.forEach(el => el.classList.add('hidden'));
-        pubs.forEach(el => el.classList.remove('hidden'));
-        projectsHeader.style.display = 'none';
-        pubsHeader.style.display = 'block';
-      } else {
-        projects.forEach(el => el.classList.remove('hidden'));
-        pubs.forEach(el => el.classList.remove('hidden'));
-        projectsHeader.style.display = 'block';
-        pubsHeader.style.display = 'block';
-      }
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      filterContent('all', document.querySelector('.filter-bar button'));
-    });
-
-    // Unified carousel — replaces the two duplicated pairs of variables and functions
+    // Unified carousel
     const carousels = {
       ls: {
         images: [
