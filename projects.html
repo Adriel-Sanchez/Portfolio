@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Projects and publications by Adriel Sanchez covering cybersecurity, Linux server administration, and security research." />
   <title>Adriel Sanchez | Projects</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <style>
@@ -65,11 +66,12 @@
       font-weight: 700;
       font-family: 'Inter', sans-serif;
     }
+    /* FIX: was "sans-serif." (period instead of semicolon) — now correct */
     header p {
       font-size: clamp(1rem, 2vw, 1.4rem);
       margin-top: 14px;
       color: var(--text-muted);
-      font-family: 'Poppins', sans-serif.
+      font-family: 'Poppins', sans-serif;
     }
 
     /* FILTER BAR */
@@ -282,10 +284,10 @@
     <!-- Project: Linux Server Deployment & Configuration -->
     <section class="card project">
       <div class="media">
-        <img id="ls-carousel-image" src="https://adriel-sanchez.github.io/Portfolio/Images/LSD.png" alt="Linux Server Deployment & Configuration">
+        <img id="img-ls" src="https://adriel-sanchez.github.io/Portfolio/Images/LSD.png" alt="Linux Server Deployment & Configuration">
         <div class="controls">
-          <button aria-label="Previous image" onclick="changeLSImage(-1)">&#8249;</button>
-          <button aria-label="Next image" onclick="changeLSImage(1)">&#8250;</button>
+          <button aria-label="Previous image" onclick="changeImage('ls', -1)">&#8249;</button>
+          <button aria-label="Next image" onclick="changeImage('ls', 1)">&#8250;</button>
         </div>
       </div>
       <div class="details">
@@ -301,10 +303,10 @@
     <!-- Project: KeyLogger -->
     <section class="card project">
       <div class="media">
-        <img id="kl-carousel-image" src="https://adriel-sanchez.github.io/Portfolio/Images/KLD.png" alt="KeyLogger demonstration project">
+        <img id="img-kl" src="https://adriel-sanchez.github.io/Portfolio/Images/KLD.png" alt="KeyLogger demonstration project">
         <div class="controls">
-          <button aria-label="Previous image" onclick="changeKLImage(-1)">&#8249;</button>
-          <button aria-label="Next image" onclick="changeKLImage(1)">&#8250;</button>
+          <button aria-label="Previous image" onclick="changeImage('kl', -1)">&#8249;</button>
+          <button aria-label="Next image" onclick="changeImage('kl', 1)">&#8250;</button>
         </div>
       </div>
       <div class="details">
@@ -353,7 +355,6 @@
   <script>
     // Filter logic (also toggles headers)
     function filterContent(type, btn) {
-      // Update active button UI
       document.querySelectorAll('.filter-bar button').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
 
@@ -380,33 +381,34 @@
       }
     }
 
-    // Show all by default on load
     window.addEventListener('DOMContentLoaded', () => {
       filterContent('all', document.querySelector('.filter-bar button'));
     });
 
-    // Linux Server carousel
-    const lsImages = [
-      'https://adriel-sanchez.github.io/Portfolio/Images/LSD.png',
-      'https://adriel-sanchez.github.io/Portfolio/Images/LSO.png',
-      'https://adriel-sanchez.github.io/Portfolio/Images/LSU.png'
-    ];
-    let lsCurrent = 0;
-    function changeLSImage(dir) {
-      lsCurrent = (lsCurrent + dir + lsImages.length) % lsImages.length;
-      document.getElementById('ls-carousel-image').src = lsImages[lsCurrent];
-    }
+    // Unified carousel — replaces the two duplicated pairs of variables and functions
+    const carousels = {
+      ls: {
+        images: [
+          'https://adriel-sanchez.github.io/Portfolio/Images/LSD.png',
+          'https://adriel-sanchez.github.io/Portfolio/Images/LSO.png',
+          'https://adriel-sanchez.github.io/Portfolio/Images/LSU.png'
+        ],
+        current: 0
+      },
+      kl: {
+        images: [
+          'https://adriel-sanchez.github.io/Portfolio/Images/KLD.png',
+          'https://adriel-sanchez.github.io/Portfolio/Images/KL.png',
+          'https://adriel-sanchez.github.io/Portfolio/Images/KLO.png'
+        ],
+        current: 0
+      }
+    };
 
-    // KeyLogger carousel
-    const klImages = [
-      'https://adriel-sanchez.github.io/Portfolio/Images/KLD.png',
-      'https://adriel-sanchez.github.io/Portfolio/Images/KL.png',
-      'https://adriel-sanchez.github.io/Portfolio/Images/KLO.png'
-    ];
-    let klCurrent = 0;
-    function changeKLImage(dir) {
-      klCurrent = (klCurrent + dir + klImages.length) % klImages.length;
-      document.getElementById('kl-carousel-image').src = klImages[klCurrent];
+    function changeImage(id, dir) {
+      const c = carousels[id];
+      c.current = (c.current + dir + c.images.length) % c.images.length;
+      document.getElementById('img-' + id).src = c.images[c.current];
     }
   </script>
 </body>
