@@ -29,112 +29,123 @@
             min-height: 100vh;
         }
 
-        /* NAVIGATION */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: #0e0e0e;
-            padding: 14px 40px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.6);
-            z-index: 10;
-        }
-
-        nav ul {
+        .page-body {
+            flex: 1;
             display: flex;
-            list-style: none;
-            gap: 30px;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 40px;
+            gap: 80px;
         }
 
-        nav a {
+        .side-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            flex-shrink: 0;
+        }
+
+        .side-nav a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             text-decoration: none;
+            padding: 14px 24px;
+            border-radius: 12px;
+            border: 1px solid rgba(79, 110, 247, 0.25);
+            background: rgba(79, 110, 247, 0.06);
+            color: #f1f1f1;
             font-family: 'Inter', sans-serif;
-            color: var(--text-muted);
             font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.02em;
+            transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
             position: relative;
-            transition: color 0.3s ease;
+            overflow: hidden;
+            min-width: 160px;
         }
 
-        nav a::before {
+        .side-nav a::before {
             content: "";
             position: absolute;
-            width: 100%;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background: var(--accent-color);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(79,110,247,0.15), transparent);
+            opacity: 0;
+            transition: opacity 0.25s ease;
         }
 
-        nav a:hover::before,
-        nav a.active::before {
-            transform: scaleX(1);
+        .side-nav a:hover::before {
+            opacity: 1;
         }
 
-        nav a:hover {
+        .side-nav a:hover {
+            border-color: var(--accent-color);
+            background: rgba(79, 110, 247, 0.12);
+            transform: translateX(6px);
+            box-shadow: 0 4px 24px rgba(79, 110, 247, 0.2);
+            color: #fff;
+        }
+
+        .side-nav a .nav-icon {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .side-nav a .nav-label {
+            flex: 1;
+        }
+
+        .side-nav a .nav-arrow {
+            opacity: 0;
+            transform: translateX(-4px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
             color: var(--accent-color);
+            font-size: 1rem;
         }
 
-        nav a.active {
-            color: var(--accent-color);
+        .side-nav a:hover .nav-arrow {
+            opacity: 1;
+            transform: translateX(0);
         }
 
-        /* HEADER */
-        header {
+        .side-divider {
+            width: 1px;
+            align-self: stretch;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.08) 20%, rgba(255,255,255,0.08) 80%, transparent);
+            flex-shrink: 0;
+        }
+
+        .hero {
+            flex: 1;
             text-align: center;
-            padding: 160px 20px 80px;
         }
 
-        header h1 {
+        .hero h1 {
             font-size: clamp(2.5rem, 5vw, 4rem);
-            color: var(--accent-color);
+            color: #f1f1f1;
             font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 16px;
         }
 
-        header p {
-            font-size: clamp(1rem, 2vw, 1.4rem);
-            margin-top: 16px;
+        .hero h1 span {
+            color: var(--accent-color);
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 1.8vw, 1.15rem);
             color: var(--text-muted);
             font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            max-width: 480px;
+            margin: 0 auto;
         }
 
-        /* ARROW */
-        .arrow-wrapper {
-            position: absolute;
-            top: -140px;
-            left: calc(50% - 110px);
-            text-align: center;
-        }
-
-        .arrow-wrapper p {
-            margin-bottom: 6px;
-            color: #fff;
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            transform: rotate(-4deg);
-        }
-
-        .arrow-wrapper svg {
-            width: 100px;
-            height: 100px;
-            fill: none;
-            stroke: #fff;
-            stroke-width: 3;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        /* FOOTER */
         footer {
-            position: relative;
             text-align: center;
             padding: 20px;
             background: #0e0e0e;
             color: #999;
-            margin-top: auto;
         }
 
         .social-icons {
@@ -171,50 +182,54 @@
             color: #aaa;
             font-style: italic;
         }
+
+        @media (max-width: 700px) {
+            .page-body {
+                flex-direction: column;
+                align-items: center;
+                padding: 40px 24px;
+                gap: 40px;
+            }
+            .side-divider { display: none; }
+            .side-nav a { min-width: unset; width: 100%; }
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- NAVIGATION -->
-    <nav>
-        <ul>
-            <li><a href="/Portfolio/index.html" class="active">Portfolio</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="credentials.html">Credentials</a></li>
-        </ul>
-    </nav>
+    <div class="page-body">
 
-    <!-- HEADER -->
-    <header>
-        <h1>Adriel Sanchez</h1>
-        <p>Cybersecurity | Analytics | Network Hardening</p>
-    </header>
+        <nav class="side-nav" aria-label="Site navigation">
+            <a href="projects.html">
+                <span class="nav-icon">🛠</span>
+                <span class="nav-label">Projects</span>
+                <span class="nav-arrow">→</span>
+            </a>
+            <a href="credentials.html">
+                <span class="nav-icon">🎓</span>
+                <span class="nav-label">Credentials</span>
+                <span class="nav-arrow">→</span>
+            </a>
+        </nav>
 
-    <!-- FOOTER -->
-    <footer>
+        <div class="side-divider"></div>
 
-        <!-- ARROW ABOVE LINKEDIN -->
-        <div class="arrow-wrapper">
-            <p>I'm also on LinkedIn!</p>
-            <svg viewBox="0 0 100 100">
-                <path d="M50,10 C50,40 50,70 50,85" />
-                <line x1="50" y1="85" x2="45" y2="75" />
-                <line x1="50" y1="85" x2="55" y2="75" />
-            </svg>
+        <div class="hero">
+            <h1>Adriel<br><span>Sanchez</span></h1>
+            <p>Cybersecurity professional focused on analytics, network hardening, and information security.</p>
         </div>
 
+    </div>
+
+    <footer>
         <div class="social-icons">
             <a href="https://www.linkedin.com/in/adrielsanchez" target="_blank" rel="noopener">
                 <img src="https://adriel-sanchez.github.io/Portfolio/Images/Linkedin.png" alt="LinkedIn" />
             </a>
-            <a href="https://www.credly.com/users/adriel-sanchez.6d9c4577" target="_blank" rel="noopener">
-                <img src="https://adriel-sanchez.github.io/Portfolio/Images/Credly.png" alt="Credly" />
-            </a>
         </div>
-
         <div class="footer-text">
-            <p>Created by Adriel Sanchez ✨</p>
+            <p>Made with love by Adriel Sanchez ❤️</p>
         </div>
     </footer>
 
