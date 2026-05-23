@@ -5,114 +5,136 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Projects by Adriel Sanchez covering cybersecurity, Linux server administration, and security research." />
   <title>Adriel Sanchez | Projects</title>
-  <!-- Publications removed -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
+    /* ── DESIGN TOKENS ── */
     :root {
-      --accent-color: #4f6ef7;
-      --text-muted: #bbb;
-      --card-bg: rgba(255,255,255,0.05);
+      --accent:      #4f6ef7;
+      --accent-dim:  rgba(79, 110, 247, 0.18);
+      --accent-glow: rgba(79, 110, 247, 0.25);
+      --bg:          #0a0a0a;
+      --surface:     #111111;
+      --surface-2:   #181818;
+      --border:      rgba(255,255,255,0.07);
+      --text:        #f1f1f1;
+      --muted:       #888;
+      --nav-h:       58px;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
       font-family: 'Inter', sans-serif;
-      background: #0a0a0a;
-      color: #f1f1f1;
+      background: var(--bg);
+      color: var(--text);
       display: flex;
       flex-direction: column;
       min-height: 100vh;
     }
 
-    /* NAVIGATION */
+    /* ── NAV ── */
     nav {
       position: fixed;
       top: 0; left: 0;
       width: 100%;
-      background: #0e0e0e;
-      padding: 14px 40px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.6);
-      z-index: 10;
+      height: var(--nav-h);
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+      z-index: 100;
     }
-    nav ul { display: flex; list-style: none; gap: 30px; }
+    nav ul { display: flex; list-style: none; gap: 32px; }
     nav a {
       text-decoration: none;
-      font-family: 'Inter', sans-serif;
-      color: var(--text-muted);
+      color: var(--muted);
       font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
       position: relative;
-      transition: color 0.3s ease;
+      transition: color 0.25s ease;
     }
-    nav a::before {
+    nav a::after {
       content: "";
       position: absolute;
-      width: 100%; height: 2px;
       bottom: -4px; left: 0;
-      background: var(--accent-color);
+      width: 100%; height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
       transform: scaleX(0);
-      transition: transform 0.3s ease;
+      transition: transform 0.25s ease;
     }
-    nav a:hover::before,
-    nav a.active::before { transform: scaleX(1); }
-    nav a:hover { color: var(--accent-color); }
-    nav a.active { color: var(--accent-color); }
+    nav a:hover { color: #fff; }
+    nav a:hover::after,
+    nav a.active::after { transform: scaleX(1); }
+    nav a.active { color: var(--accent); }
 
-    /* HEADER */
-    header {
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding-top: calc(var(--nav-h) + 60px);
+      padding-bottom: 48px;
       text-align: center;
-      padding: 160px 20px 30px;
     }
-    header h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      color: var(--accent-color);
+    .page-header h1 {
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
       font-weight: 700;
-      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
     }
-    /* FIX: was "sans-serif." (period instead of semicolon) — now correct */
-    header p {
-      font-size: clamp(1rem, 2vw, 1.4rem);
-      margin-top: 14px;
-      color: var(--text-muted);
+    .page-header h1 span { color: var(--accent); }
+    .page-header p {
+      margin-top: 12px;
       font-family: 'Poppins', sans-serif;
+      font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+      color: var(--muted);
     }
 
-    /* Filter bar removed with publications */
-
-    /* MAIN */
+    /* ── MAIN ── */
     main {
-      max-width: 1100px;
+      max-width: 900px;
+      width: 100%;
       margin: 0 auto;
-      padding: 0 20px 40px;
-    }
-    .section-title {
-      text-align: center;
-      color: var(--accent-color);
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: clamp(1.6rem, 3.2vw, 2.2rem);
-      margin: 28px 0 20px;
+      padding: 0 24px 80px;
+      flex: 1;
     }
 
-    /* CARD BASE */
+    /* ── PROJECT CARD ── */
     .card {
-      background: var(--card-bg);
-      border-radius: 16px;
-      padding: 20px;
-      margin: 18px 0 26px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 14px;
+      padding: 28px;
+      margin-bottom: 28px;
       display: grid;
-      grid-template-columns: 260px 1fr;
-      gap: 22px;
-      align-items: center;
+      grid-template-columns: 240px 1fr;
+      gap: 28px;
+      align-items: start;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.5s ease forwards;
     }
-    .card:hover {
-      transform: translateY(-6px) scale(1.02);
-      box-shadow: 0 14px 38px rgba(255,255,255,0.15);
-    }
-    .card.hidden { display: none; }
+    .card:nth-child(1) { animation-delay: 0.05s; }
+    .card:nth-child(2) { animation-delay: 0.15s; }
+    .card:nth-child(3) { animation-delay: 0.25s; }
 
-    /* MEDIA (project preview) */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px var(--accent-glow);
+      border-color: var(--accent);
+    }
+
+    /* ── MEDIA / CAROUSEL ── */
     .media {
       display: flex;
       flex-direction: column;
@@ -121,80 +143,108 @@
     }
     .media img {
       width: 100%;
-      max-width: 240px;
       border-radius: 10px;
       object-fit: cover;
+      aspect-ratio: 16/10;
+      background: var(--surface-2);
     }
     .controls {
       display: flex;
-      gap: 12px;
+      gap: 8px;
     }
     .controls button {
-      background: transparent;
-      border: none;
-      color: var(--accent-color);
-      font-size: 1.5rem;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      width: 34px; height: 34px;
+      border-radius: 8px;
+      font-size: 1.2rem;
       cursor: pointer;
-      transition: color 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, color 0.2s ease;
     }
-    .controls button:hover { color: #ffffff; }
+    .controls button:hover {
+      background: var(--accent);
+      color: #fff;
+    }
 
-    /* DETAILS */
+    /* ── DETAILS ── */
+    .details {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+    .date {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-style: italic;
+    }
     .details h3 {
-      color: var(--accent-color);
-      font-size: clamp(1.1rem, 2.2vw, 1.5rem);
-      margin-bottom: 6px;
-      font-family: 'Inter', sans-serif;
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
     }
     .details p {
-      color: #ccc;
       font-family: 'Poppins', sans-serif;
-      font-size: 0.98rem;
-      line-height: 1.55;
-      margin-bottom: 12px;
+      font-size: 0.93rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 4px;
     }
     .actions a {
-      display: inline-block;
-      margin-top: 4px;
-      margin-right: 8px;
-      color: var(--accent-color);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent);
       text-decoration: none;
-      border: 2px solid var(--accent-color);
-      padding: 6px 12px;
+      border: 1.5px solid var(--accent);
+      padding: 7px 16px;
       border-radius: 8px;
+      font-size: 0.88rem;
       font-weight: 600;
-      transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+      transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease;
     }
     .actions a:hover {
-      background: var(--accent-color);
-      color: #121212;
+      background: var(--accent);
+      color: #fff;
       transform: translateY(-2px);
     }
 
-    /* .pub-date and .card.pub styles removed with publications section */
-
-    /* DATES */
-    .date {
-      position: absolute;
-      bottom: 12px;
-      right: 16px;
-      font-size: 0.85rem;
-      color: #aaa;
-      font-style: italic;
-    }
-
-    /* FOOTER */
+    /* ── FOOTER ── */
     footer {
       text-align: center;
-      padding: 20px;
-      background: #0e0e0e;
-      color: #999;
-      margin-top: auto;
+      padding: 24px 20px;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      color: var(--muted);
     }
     .social-icons {
       display: flex;
       justify-content: center;
-      gap: 20px;
+      gap: 16px;
       margin-bottom: 12px;
     }
     .social-icons a {
@@ -204,85 +254,100 @@
       width: 40px; height: 40px;
       border-radius: 50%;
       background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
       transition: background 0.3s ease, transform 0.3s ease;
     }
-    .social-icons img {
-      width: 70%; height: 70%;
-      object-fit: contain;
-    }
+    .social-icons img { width: 60%; height: 60%; object-fit: contain; }
     .social-icons a:hover {
-      background: var(--accent-color);
+      background: var(--accent);
       transform: scale(1.1);
     }
-    .footer-text {
-      font-size: 0.9rem;
-      color: #aaa;
-      font-style: italic;
-    }
+    .footer-text { font-size: 0.88rem; color: var(--muted); font-style: italic; }
 
-    /* Responsive */
-    @media (max-width: 800px) {
-      .card { grid-template-columns: 1fr; }
-      .media img { max-width: 100%; }
+    /* ── MOBILE ── */
+    @media (max-width: 680px) {
+      nav { padding: 0 20px; }
+      nav ul { gap: 20px; }
+
+      .page-header { padding-top: calc(var(--nav-h) + 36px); padding-bottom: 32px; }
+
+      main { padding: 0 16px 60px; }
+
+      .card {
+        grid-template-columns: 1fr;
+        padding: 20px;
+        gap: 18px;
+      }
+      .media img { aspect-ratio: 16/9; }
+
+      .actions { flex-direction: column; }
+      .actions a { justify-content: center; }
     }
   </style>
 </head>
 <body>
-  <!-- NAVIGATION -->
+
+  <!-- NAV -->
   <nav>
     <ul>
-      <li><a href="/Portfolio/index.html">Portfolio</a></li>
+      <li><a href="index.html">Portfolio</a></li>
       <li><a href="projects.html" class="active">Projects</a></li>
       <li><a href="credentials.html">Credentials</a></li>
     </ul>
   </nav>
 
   <!-- HEADER -->
-  <header>
-    <h1>Projects</h1>
-    <p>Cybersecurity | Analytics | Network Hardening</p>
+  <header class="page-header">
+    <h1>My <span>Projects</span></h1>
+    <p>Cybersecurity &nbsp;·&nbsp; Analytics &nbsp;·&nbsp; Network Hardening</p>
   </header>
 
   <!-- MAIN -->
   <main>
 
-    <!-- Project: Linux Server Deployment & Configuration -->
-    <section class="card project">
+    <!-- Linux Server -->
+    <section class="card">
       <div class="media">
-        <img id="img-ls" src="https://adriel-sanchez.github.io/Portfolio/Images/LSD.png" alt="Linux Server Deployment & Configuration">
+        <img id="img-ls" src="https://adriel-sanchez.github.io/Portfolio/Images/LSD.png" alt="Linux Server Deployment">
         <div class="controls">
           <button aria-label="Previous image" onclick="changeImage('ls', -1)">&#8249;</button>
           <button aria-label="Next image" onclick="changeImage('ls', 1)">&#8250;</button>
         </div>
       </div>
       <div class="details">
+        <div class="card-meta">
+          <span class="tag">Linux</span>
+          <span class="date">June 2025</span>
+        </div>
         <h3>Linux Server Deployment & Configuration</h3>
         <p>Deploying, securing, and managing a Linux server in a virtual environment using essential services, containers, and hardening practices.</p>
         <div class="actions">
-          <a href="https://adriel-sanchez.github.io/Portfolio/Files/LinuxServer-AS.pdf" download>Download documentation</a>
+          <a href="https://adriel-sanchez.github.io/Portfolio/Files/LinuxServer-AS.pdf" download>↓ Documentation</a>
         </div>
       </div>
-      <span class="date">June 2025</span>
     </section>
 
-    <!-- Project: KeyLogger -->
-    <section class="card project">
+    <!-- KeyLogger -->
+    <section class="card">
       <div class="media">
-        <img id="img-kl" src="https://adriel-sanchez.github.io/Portfolio/Images/KLD.png" alt="KeyLogger demonstration project">
+        <img id="img-kl" src="https://adriel-sanchez.github.io/Portfolio/Images/KLD.png" alt="KeyLogger Project">
         <div class="controls">
           <button aria-label="Previous image" onclick="changeImage('kl', -1)">&#8249;</button>
           <button aria-label="Next image" onclick="changeImage('kl', 1)">&#8250;</button>
         </div>
       </div>
       <div class="details">
+        <div class="card-meta">
+          <span class="tag">Security Research</span>
+          <span class="date">April 2025</span>
+        </div>
         <h3>KeyLogger</h3>
         <p>Demonstration project capturing keystrokes on a host for 60 seconds and saving a local text log, used for security research training.</p>
         <div class="actions">
-          <a href="https://adriel-sanchez.github.io/Portfolio/Files/KeyLogger-AS.exe" download>Download application</a>
-          <a href="https://adriel-sanchez.github.io/Portfolio/Files/KeyLogger-AS-SourceFile.py" download>Download source file</a>
+          <a href="https://adriel-sanchez.github.io/Portfolio/Files/KeyLogger-AS.exe" download>↓ Application</a>
+          <a href="https://adriel-sanchez.github.io/Portfolio/Files/KeyLogger-AS-SourceFile.py" download>↓ Source File</a>
         </div>
       </div>
-      <span class="date">April 2025</span>
     </section>
 
   </main>
@@ -297,14 +362,10 @@
         <img src="https://adriel-sanchez.github.io/Portfolio/Images/Credly.png" alt="Credly" />
       </a>
     </div>
-    <div class="footer-text">
-      <p>Created by Adriel Sanchez ✨</p>
-    </div>
+    <div class="footer-text"><p>Created by Adriel Sanchez ✨</p></div>
   </footer>
 
-  <!-- SCRIPTS -->
   <script>
-    // Unified carousel
     const carousels = {
       ls: {
         images: [
@@ -330,5 +391,6 @@
       document.getElementById('img-' + id).src = c.images[c.current];
     }
   </script>
+
 </body>
 </html>
