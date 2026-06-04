@@ -22,11 +22,15 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
       background: var(--bg);
       color: var(--text);
-      min-height: 100vh;
       display: flex;
       flex-direction: column;
       overflow-x: hidden;
@@ -50,7 +54,6 @@
       align-items: center;
       padding: 0 48px;
       position: relative; z-index: 1;
-      min-height: 100vh;
     }
 
     /* ── LEFT ── */
@@ -98,9 +101,7 @@
       color: var(--text);
       margin-bottom: 20px;
     }
-    .hero h1 span {
-      color: var(--accent);
-    }
+    .hero h1 span { color: var(--accent); }
 
     .hero-role {
       font-size: 1rem; color: var(--muted);
@@ -140,6 +141,7 @@
       background: rgba(8,8,16,0.9);
       border-top: 1px solid var(--border);
       position: relative; z-index: 1;
+      flex-shrink: 0;
     }
     .social-icons {
       display: flex; justify-content: center;
@@ -158,12 +160,12 @@
 
     /* ── MOBILE ── */
     @media (max-width: 780px) {
+      html, body { overflow: auto; }
       .page-body {
         grid-template-columns: 1fr;
         justify-items: center;
         padding: 40px 20px;
         gap: 36px;
-        min-height: unset;
       }
       .hero { order: -1; padding: 0; }
       .left-col { width: 100%; max-width: 320px; }
@@ -174,7 +176,6 @@
   </style>
 </head>
 <body>
-
 
   <div class="page-body">
 
@@ -195,11 +196,6 @@
         <span class="nav-label">Resume</span>
         <span class="nav-arrow">↓</span>
       </a>
-      <a href="https://adriel-sanchez.github.io/Portfolio/Files/MasterResume-AS.pdf" download>
-        <span class="nav-icon">📋</span>
-        <span class="nav-label">Master Resume</span>
-        <span class="nav-arrow">↓</span>
-      </a>
     </div>
 
     <!-- HERO -->
@@ -212,7 +208,7 @@
 
     <!-- PROFILE -->
     <div class="profile-col">
-      <a
+      
         href="https://www.linkedin.com/in/adrielsanchez"
         target="_blank"
         rel="noopener"
